@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { Section } from "./Section/Section";
 import { GlobalStyled } from "./GlobalStyle";
-import 'modern-normalize'
-import { Wrapper } from "./App.styled";
 
+import { Wrapper } from "./App.styled";
+import 'modern-normalize'
 
 
 export const App = () => {

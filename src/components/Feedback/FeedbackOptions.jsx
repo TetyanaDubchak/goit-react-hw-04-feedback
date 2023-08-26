@@ -1,12 +1,12 @@
 import { List, Button } from "./FeedbackOptions.styled";
 import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({onButtons}) => {
+export const FeedbackOptions = ({onGoodClick,onNeutralClick,onBadClick}) => {
     return (
         <List>
-            <li><Button onClick={() => onButtons('good')} id="good">Good</Button></li>
-            <li><Button onClick={() => onButtons('neutral')} id="neutral">Neutral</Button></li>
-            <li><Button onClick={() => onButtons('bad')} id="bad">Bad</Button></li>
+            <li><Button onClick={onGoodClick} id="good">Good</Button></li>
+            <li><Button onClick={onNeutralClick} id="neutral">Neutral</Button></li>
+            <li><Button onClick={onBadClick} id="bad">Bad</Button></li>
         </List>  
 
     )

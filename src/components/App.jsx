@@ -1,5 +1,5 @@
 
-import { Component } from "react";
+import { useState } from "react";
 import { Section } from "./Section/Section";
 import { GlobalStyled } from "./GlobalStyle";
 import 'modern-normalize'
@@ -7,40 +7,39 @@ import { Wrapper } from "./App.styled";
 
 
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  countTotalFeedback = () => {
-    let sum = this.state.good + this.state.neutral + this.state.bad
+  const handleClickGood = () => {
+    setGood(prevState => prevState + 1)
+  } 
+
+  const onNeutralClick = () => {
+    setNeutral(prevState => prevState + 1) 
+  }
+
+  const handleClickBad = () => {
+    setBad(prevState => prevState + 1) 
+  }
+
+  const countTotalFeedback = () => {
+    let sum = good + neutral + bad
     return sum
       
   }
 
-  countPositiveFeedbackPercentage = () => {
-    let part = ((this.state.good) * 100) / (this.state.good + this.state.neutral + this.state.bad)
+  const countPositiveFeedbackPercentage = () => {
+    let part = ((good) * 100) / (good + neutral + bad)
     return Math.round(part)
   }
 
-  handleClick = type => {
-    this.setState(prevState => {
-      return {
-          [type]: prevState[type] + 1,
-        }
-      })
-  }
-
-
-  render() {
-    return (
+  return (
       <Wrapper>
-      <Section  part={this.countPositiveFeedbackPercentage()} sum={this.countTotalFeedback()} clicksGood = {this.state.good} clicksNeutral = {this.state.neutral} clicksBad = {this.state.bad} onButtons = {this.handleClick} title={'Please leave feedback'} />
-      <GlobalStyled/>
+        <Section  part={countPositiveFeedbackPercentage()} sum={countTotalFeedback()} clicksGood = {good} clicksNeutral = {neutral} clicksBad = {bad} onGoodClick = {handleClickGood} onNeutralClick={onNeutralClick} onBadClick ={handleClickBad} title={'Please leave feedback'} />
+        <GlobalStyled/>
       </Wrapper>
       
     )
-  }
 }

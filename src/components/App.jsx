@@ -12,17 +12,22 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const handleClickGood = () => {
-    setGood(prevState => prevState + 1)
+  const handleOnClick = (type) => {
+    switch (type) {
+      case 'good':
+        setGood(prevState => prevState + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevState => prevState + 1);
+        break;
+      case 'bad':
+        setBad(prevState => prevState + 1);
+        break;
+      default:
+        break;
+    }
+    
   } 
-
-  const onNeutralClick = () => {
-    setNeutral(prevState => prevState + 1) 
-  }
-
-  const handleClickBad = () => {
-    setBad(prevState => prevState + 1) 
-  }
 
   const countTotalFeedback = () => {
     let sum = good + neutral + bad
@@ -37,7 +42,7 @@ export const App = () => {
 
   return (
       <Wrapper>
-        <Section  part={countPositiveFeedbackPercentage()} sum={countTotalFeedback()} clicksGood = {good} clicksNeutral = {neutral} clicksBad = {bad} onGoodClick = {handleClickGood} onNeutralClick={onNeutralClick} onBadClick ={handleClickBad} title={'Please leave feedback'} />
+        <Section part={countPositiveFeedbackPercentage()} sum={countTotalFeedback()} clicksGood = {good} clicksNeutral = {neutral} clicksBad = {bad} onClicks = {handleOnClick} title={'Please leave feedback'} />
         <GlobalStyled/>
       </Wrapper>
       

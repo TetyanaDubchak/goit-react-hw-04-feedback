@@ -3,11 +3,11 @@ import { FeedbackOptions } from "components/Feedback/FeedbackOptions"
 import { Statistics } from "components/Statistics/Statistics"
 import {Title } from "./Section.styled.js";
 
-export const Section = ({ title, onGoodClick, onNeutralClick,onBadClick, clicksGood, clicksNeutral, clicksBad, sum, part}) => {
+export const Section = ({ title, onClicks, clicksGood, clicksNeutral, clicksBad, sum, part}) => {
     return (
         <div>
             <Title>{title}</Title>
-            <FeedbackOptions onGoodClick={onGoodClick} onNeutralClick={onNeutralClick} onBadClick={ onBadClick} />
+            <FeedbackOptions onClicks={onClicks}/>
             <Statistics  part={part} sum={sum} clicksGood={clicksGood} clicksNeutral={clicksNeutral} clicksBad={clicksBad} />
         </div>
         
